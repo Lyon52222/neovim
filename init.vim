@@ -103,7 +103,6 @@ call plug#begin('~/.vim/plugged')
 	Plug 'easymotion/vim-easymotion'
 	Plug 'SirVer/ultisnips'
 	Plug 'mg979/vim-visual-multi', {'branch': 'master'}
-	"Plug 'ctrlpvim/ctrlp.vim'
 	Plug 'tpope/vim-surround'
 	Plug 'gcmt/wildfire.vim'
 	Plug 'tpope/vim-repeat'
@@ -155,10 +154,6 @@ nnoremap <buffer> <silent> <localleader>b :PythonSetBreak<CR>
 "Python {{{
 	Plug 'tell-k/vim-autopep8',{'for':'python'}
 	Plug 'Yggdroot/indentLine',{'for':'python'}
-	"Plug 'Shougo/deoplete.nvim',{ 'do': ':UpdateRemotePlugins', 'for': 'python' }
-	"Plug 'zchee/deoplete-jedi',{'for': 'python'}
-	"Plug 'davidhalter/jedi-vim',{'for': 'python'}
-	"Plug 'szymonmaszke/vimpyter' "vim-plug
 	Plug 'jupyter-vim/jupyter-vim'
 	Plug 'honza/vim-snippets',{'for':['python','cpp']}
 "}}}
@@ -183,7 +178,6 @@ autocmd FileType python noremap <buffer> <F8> :call Autopep8()<CR>
 " Preview window on the upper side of the window with 40% height,
 " hidden by default, ctrl-/ to toggle
 let g:fzf_preview_window = ['up:40%:hidden', 'ctrl-/']
-
 " fzf 配置---------------------------------------
 
 
@@ -261,33 +255,6 @@ let g:startify_files_number = 20
 " vim-startify配置-------------------------------
 
 
-" wildfire配置-----------------------------------
-" This selects the next closest text object.
-"map <SPACE> <Plug>(wildfire-fuel)
-
-" This selects the previous closest text object.
-"vmap <C-SPACE> <Plug>(wildfire-water)
-" wildfire配置-----------------------------------
-
-" vimpyter 配置---------------------------------
-"autocmd Filetype ipynb nmap <silent><Leader>b :VimpyterInsertPythonBlock<CR>
-"autocmd Filetype ipynb nmap <silent><Leader>j :VimpyterStartJupyter<CR>
-"autocmd Filetype ipynb nmap <silent><Leader>n :VimpyterStartNteract<CR>
-" vimpyter 配置---------------------------------
-
-
-"jedi 配置--------------------------------------
-" disable autocompletion, cause we use deoplete for completion
-"let g:jedi#completions_enabled = 0
-" open the go-to function in split, not another buffer
-"let g:jedi#use_splits_not_buffers = "right"
-"jedi 配置--------------------------------------
-
-
-
-"deoplete配置---------------------------------
-"let g:deoplete#enable_at_startup = 1
-"deoplete配置---------------------------------
 
 
 " indentLine配置 ------------------------------
@@ -341,10 +308,6 @@ let g:mkdp_browser = '/Applications/Google Chrome.app'
 " start insert mode with i,a,I,A
 " vim-visual-mutil 配置------------------------
  
-" ctrlp 配置-----------------------------------
-" let g:ctrlp_map = '<M-f>'
-" let g:ctrlp_cmd = 'CtrlP'
-" ctrlp 配置-----------------------------------
 
 " ultisnips配置 --------------------------------
 "设置tab键为触发键
