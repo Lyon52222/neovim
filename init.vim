@@ -112,30 +112,9 @@ call plug#begin('~/.vim/plugged')
 "}}}
 
 
-" jupyter-vim配置-----------------------------
-let g:jupyter_mapkeys = 0
-" Run current file
-nnoremap <buffer> <silent> <localleader>R :JupyterRunFile<CR>
-nnoremap <buffer> <silent> <localleader>I :PythonImportThisFile<CR>
-
-" Change to directory of current file
-nnoremap <buffer> <silent> <localleader>d :JupyterCd %:p:h<CR>
-
-" Send a selection of lines
-nnoremap <buffer> <silent> <localleader>X :JupyterSendCell<CR>
-nnoremap <buffer> <silent> <localleader>E :JupyterSendRange<CR>
-nmap     <buffer> <silent> <localleader>e <Plug>JupyterRunTextObj
-vmap     <buffer> <silent> <localleader>e <Plug>JupyterRunVisual
-
-nnoremap <buffer> <silent> <localleader>U :JupyterUpdateShell<CR>
-
-" Debugging maps
-nnoremap <buffer> <silent> <localleader>b :PythonSetBreak<CR>
-" jupyter-vim配置-----------------------------
-
 
 "Markdown {{{
-
+	Plug 'mzlogin/vim-markdown-toc'
 	Plug 'godlygeek/tabular'
 	Plug 'plasticboy/vim-markdown'
 	Plug 'iamcco/markdown-preview.nvim'
@@ -147,7 +126,7 @@ nnoremap <buffer> <silent> <localleader>b :PythonSetBreak<CR>
 
 
 "Latex {{{
-	Plug 'lervag/vimtex',{'for':'latex'}
+	Plug 'lervag/vimtex',{'for':'tex'}
 "}}}
 
 
@@ -164,10 +143,35 @@ call plug#end()
 " 插件END ----------------------------------------
 
 
+
 " autopep8配置-----------------------------------
 autocmd FileType python noremap <buffer> <F8> :call Autopep8()<CR>
 " autopep8配置-----------------------------------
 
+
+
+
+" jupyter-vim配置-----------------------------
+let g:jupyter_mapkeys = 0
+" Run current file
+nnoremap <leader>jc :JupyterConnect<CR>
+nnoremap <leader>jr :JupyterRunFile<CR>
+nnoremap <leader>ji :PythonImportThisFile<CR>
+
+" Change rrent file
+nnoremap <leader>jd :JupyterCd %:p:h<CR>
+
+" Send a 
+nnoremap <leader>jx :JupyterSendCell<CR>
+nnoremap <leader>je :JupyterSendRange<CR>
+nmap     <leader>je <Plug>JupyterRunTextObj
+vmap     <leader>je <Plug>JupyterRunVisual
+
+nnoremap <leader>ju :JupyterUpdateShell<CR>
+
+" Debuggi
+nnoremap <leader>jb :PythonSetBreak<CR>
+" jupyter-vim配置-----------------------------
 
 
 
@@ -179,6 +183,11 @@ autocmd FileType python noremap <buffer> <F8> :call Autopep8()<CR>
 " hidden by default, ctrl-/ to toggle
 let g:fzf_preview_window = ['up:40%:hidden', 'ctrl-/']
 " fzf 配置---------------------------------------
+
+
+
+
+
 
 
 " leetcode配置------------------------------------
@@ -249,10 +258,16 @@ let g:airline_symbols.crypt = "CR"
 
 
 
+
+
+
+
 " vim-startify配置-------------------------------
 nmap <leader>st :Startify<CR>
 let g:startify_files_number = 20
 " vim-startify配置-------------------------------
+
+
 
 
 
@@ -321,7 +336,7 @@ let g:UltiSnipsEditSplit="vertical"
 " ultinips配置end------------------------------
 
 " coc.nvim配置---------------------------------
-let g:coc_global_extensions = ['coc-json','coc-vimlsp','coc-pyright','coc-snippets']
+let g:coc_global_extensions = ['coc-vimtex','coc-json','coc-vimlsp','coc-pyright','coc-snippets']
 set updatetime=100
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
@@ -423,6 +438,8 @@ nmap <F4> :CocCommand python.setInterpreter
 let g:tex_flavor='latex'
 " Set the viewer method
 let g:vimtex_view_method='skim'
+" 设置编译引擎
+let g:vimtex_compiler_latexmk_engines = {'_': '-xelatex'}
 " Never opened/closed the quickfix window automatically. The quickfix window shows the errors and/or warnings when compile, and we can open the quickfix windows use \le
 let g:vimtex_quickfix_mode=0
 " 最后两行开启自动隐藏功能,开启了这个功能，除了你光标所在的那一行之外，文本里夹杂的LaTeX代码就都会隐藏或者替换成其他符号
