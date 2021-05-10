@@ -119,8 +119,7 @@ call plug#begin('~/.vim/plugged')
 
 	"colorscheme
 	Plug 'rakr/vim-one'
-
-	"Plug 'junegunn/seoul256.vim'
+	Plug 'junegunn/seoul256.vim'
 	"功能扩展
 	Plug '/usr/local/opt/fzf'
 	Plug 'junegunn/fzf.vim'
@@ -261,7 +260,10 @@ nnoremap <leader>jb :PythonSetBreak<CR>
 " ===
 " Preview window on the upper side of the window with 40% height,
 " hidden by default, ctrl-/ to toggle
-let g:fzf_preview_window = ['up:40%:hidden', 'ctrl-/']
+nnoremap <M-p> :Files<CR>
+nnoremap <M-f> :Rg<CR>
+nnoremap <M-h> :History<CR>
+nnoremap <M-b> :Buffers<CR>
 
 
 
@@ -316,9 +318,9 @@ nmap <leader>7 <Plug>AirlineSelectTab7
 nmap <leader>8 <Plug>AirlineSelectTab8
 nmap <leader>9 <Plug>AirlineSelectTab9
 " 设置切换tab的快捷键 <\> + <-> 切换到前一个 tab
-nmap <leader>- <Plug>AirlineSelectPrevTab
+"nmap <leader>- <Plug>AirlineSelectPrevTab
 " 设置切换tab的快捷键 <\> + <+> 切换到后一个 tab
-nmap <leader>+ <Plug>AirlineSelectNextTab
+"nmap <leader>+ <Plug>AirlineSelectNextTab
 " 设置切换tab的快捷键 <\> + <q> 退出当前的 tab
 nmap <leader>q :bp<cr>:bd #<cr>
 " 修改了一些个人不喜欢的字符

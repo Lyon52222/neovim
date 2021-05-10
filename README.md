@@ -5,49 +5,49 @@
 ### 文件操作
 | 快捷键 | 行为 | 原按键 |
 |:-:|:-|:-|
-| **fw**| 保存文件 | w\<CR> |
-| **fq**| 退出文件 | q\<CR> |
-| **fwq**| 保存并退出文件 | wq\<CR> |
-| **fqq**| 放弃保存直接退出文件 | q!\<CR>|
+| fw| 保存文件 | w\<CR> |
+| fq| 退出文件 | q\<CR> |
+| fwq| 保存并退出文件 | wq\<CR> |
+| fqq| 放弃保存直接退出文件 | q!\<CR>|
 
 ### 退出插入模式
 | 快捷键 | 行为 | 原按键 |
 |:-|:-|:-|
-| **JJ** | 退出插入模式 | \<Esc> |
+| JJ | 退出插入模式 | \<Esc> |
 
 ### 快速移动
 | 快捷键 | 行为 | 原按键 |
 |:-|:-|:-|
-| **L** | 跳转到行尾 | \$ |
-| **H** | 跳转到行首 | 0 |
-| **J** | 向下移动5行 | 5j |
-| **K** | 向上移动5行 | 5k |
+| L | 跳转到行尾 | \$ |
+| H | 跳转到行首 | 0 |
+| J | 向下移动5行 | 5j |
+| K | 向上移动5行 | 5k |
 
 ### 划分窗口
 | 快捷键 | 行为 | 原按键 |
 |:-|:-|:-|
-| **\<leader>sp** | 纵向划分窗口 | :split |
-| **\<leader>vs** | 横向划分窗口 | :vsplit |
+| \<leader>sp | 纵向划分窗口 | :split |
+| \<leader>vs | 横向划分窗口 | :vsplit |
 
 ### 调整窗口大小
 | 快捷键 | 行为 | 原按键 |
 |:-|:-|:-|
-| **\<M-l>** | 横向减少5个单位 | :vertical resize -5 |
-| **\<M-k>** | 纵向减少5个单位 | :resize -5 |
-| **\<M-j>** | 纵向增加5个单位 | :resize +5 |
-| **\<M-h>** | 横向增加5个单位 | :vertical resize +5 |
+| \<M-l> | 横向减少5个单位 | :vertical resize -5 |
+| \<M-k> | 纵向减少5个单位 | :resize -5 |
+| \<M-j> | 纵向增加5个单位 | :resize +5 |
+| \<M-h> | 横向增加5个单位 | :vertical resize +5 |
 
 ### tab相关
 | 快捷键 | 行为 | 原按键 |
 |:-|:-|:-|
-| **th** | 新建一个tab | :tabe |
-| **tj** | 下一个tab | :-tabnext |
-| **tk** | 上一个tab | :+tabnext |
+| th | 新建一个tab | :tabe |
+| tj | 下一个tab | :-tabnext |
+| tk | 上一个tab | :+tabnext |
 
 ### 终端
 | 快捷键 | 行为 | 原命令 |
 |:-|:-|:-|
-| **\<leader>/** | 打开一个新的终端 | :set split\<CR>:split\<CR>:res +10\<CR>:term\<CR> |
+| \<leader>/ | 打开一个新的终端 | :set split\<CR>:split\<CR>:res +10\<CR>:term\<CR> |
 
 ## 插件快捷键
 ### 自动补全
@@ -72,11 +72,25 @@
 | \<S-tab> | 召唤上一个代码片段 |
 
 ### 文件浏览
+[vim-startify](https://github.com/mhinz/vim-startify)
+| 快捷键 | 行为 |
+|:-|:-|
+| \<leader>st | 回到起始界面 |
+
 [coc-explorer](https://github.com/weirongxu/coc-explorer)
 | 快捷键 | 行为 |
 |:-|:-|
 | \<Space-e> | 打开文件浏览器 |
 | ? | 查看帮助文档 |
+
+
+[FZF 文件模糊查找](https://github.com/junegunn/fzf.vim)
+| 快捷键 | 行为 |
+|:-|:-|
+| \<M-p> | 模糊查找文件 |
+| \<M-f> | 模糊查找文件内容 |
+| \<M-h> | 模糊查找历史文件 |
+| \<M-b> | 模糊查找Buffers  |
 
 ### 文字编辑
 [vim-multiple-cursor](https://github.com/terryma/vim-multiple-cursors)
@@ -121,7 +135,7 @@
 ### MarkDown
 | ,n | \--- |
 |:-|:-|
-| ,b | **粗体** 的文字 |
+| ,b | 粗体** 的文字 |
 | ,s | ~~被划去~~ 的文字 |
 | ,i | *斜体* 的文字 |
 | ,d | `代码块`  |
