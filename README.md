@@ -1,6 +1,30 @@
 # Lyon 的 Neovim 配置文件
 ----
 
+
+<!-- vim-markdown-toc GFM -->
+
+* [快捷键](#快捷键)
+	* [文件操作](#文件操作)
+	* [退出插入模式](#退出插入模式)
+	* [快速移动](#快速移动)
+	* [划分窗口](#划分窗口)
+	* [调整窗口大小](#调整窗口大小)
+	* [tab相关](#tab相关)
+	* [终端](#终端)
+* [插件快捷键](#插件快捷键)
+	* [自动补全](#自动补全)
+	* [文件浏览](#文件浏览)
+	* [文字编辑](#文字编辑)
+	* [缓冲区内导航](#缓冲区内导航)
+	* [其它](#其它)
+* [文件相关](#文件相关)
+	* [MarkDown](#markdown)
+* [自定义代码补全](#自定义代码补全)
+	* [MarkDown](#markdown-1)
+
+<!-- vim-markdown-toc -->
+
 ## 快捷键
 ### 文件操作
 | 快捷键 | 行为 | 原按键 |
@@ -131,6 +155,15 @@
 |:-|:-|
 | \<leader>go | 打开/关闭Goyo |
 
+## 文件相关
+### MarkDown
+[vim-markdown-toc](https://github.com/mzlogin/vim-markdown-toc)
+| 命令 | 行为 |
+|:-|:-|
+| :GenTocGFM | 生成GFM风格的目录，适用于GitHub和GitBook中的MarkDown文件 |
+| :GenTocRedcarpet | 生成Redcarpet风格的目录，适用于Redcarpet作为MarkDown引擎的Jekyll项目或者其它地方 |
+| :RemoveToc | 删除本插件生成的目录 |
+
 ## 自定义代码补全
 ### MarkDown
 | ,n | \--- |
@@ -148,5 +181,4 @@
 | ,l | \-------|
 | ,f | 去往下一个\<++>(占位符)|
 | ,w | 去往下一个\<++>(占位符)并按下`Enter`
-
 

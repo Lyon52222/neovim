@@ -123,7 +123,6 @@ call plug#begin('~/.vim/plugged')
 	"功能扩展
 	Plug '/usr/local/opt/fzf'
 	Plug 'junegunn/fzf.vim'
-	Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
 	Plug 'liuchengxu/vista.vim'
 	Plug 'terryma/vim-smooth-scroll'
 	Plug 'mg979/vim-xtabline'
@@ -161,12 +160,17 @@ call plug#begin('~/.vim/plugged')
 	Plug 'Yggdroot/indentLine',{'for':'python'}
 	Plug 'jupyter-vim/jupyter-vim'
 	Plug 'honza/vim-snippets',{'for':['python','cpp']}
+	Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
 	"leetcode
 	Plug 'ianding1/leetcode.vim'
 call plug#end()
 " 插件END ----------------------------------------
 
 
+" ===
+" === EasyAlign
+" ===
+xnoremap ga <Plug>(EasyAlign)
 
 " ===
 " === Goyo
