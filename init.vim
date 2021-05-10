@@ -70,7 +70,7 @@ noremap <LEADER>sc :set spell!<CR>
 " 设置外观 -------------------------------------
 "colorscheme one
 colo seoul256
-set background=dark
+"set background=dark
 set number                      "显示行号 
 set relativenumber
 augroup relative_numbser
@@ -119,8 +119,8 @@ call plug#begin('~/.vim/plugged')
 
 	"colorscheme
 	Plug 'rakr/vim-one'
-	Plug 'junegunn/seoul256.vim'
 
+	"Plug 'junegunn/seoul256.vim'
 	"功能扩展
 	Plug '/usr/local/opt/fzf'
 	Plug 'junegunn/fzf.vim'
@@ -166,6 +166,7 @@ call plug#begin('~/.vim/plugged')
 	Plug 'ianding1/leetcode.vim'
 call plug#end()
 " 插件END ----------------------------------------
+
 
 
 " ===
@@ -519,6 +520,26 @@ let g:tex_conceal='abdmg'
 " let g:vimtex_compiler_progname = 'nvr'
 
 
+" ===
+" === Markdown Settings
+" ===
+" Snippets
+autocmd Filetype markdown inoremap <buffer> ,f <Esc>/<++><CR>:nohlsearch<CR>"_c4l
+autocmd Filetype markdown inoremap <buffer> ,w <Esc>/ <++><CR>:nohlsearch<CR>"_c5l<CR>
+autocmd Filetype markdown inoremap <buffer> ,n ---<Enter><Enter>
+autocmd Filetype markdown inoremap <buffer> ,b **** <++><Esc>F*hi
+autocmd Filetype markdown inoremap <buffer> ,s ~~~~ <++><Esc>F~hi
+autocmd Filetype markdown inoremap <buffer> ,i ** <++><Esc>F*i
+autocmd Filetype markdown inoremap <buffer> ,d `` <++><Esc>F`i
+autocmd Filetype markdown inoremap <buffer> ,c ```<Enter><++><Enter>```<Enter><Enter><++><Esc>4kA
+autocmd Filetype markdown inoremap <buffer> ,m - [ ] 
+autocmd Filetype markdown inoremap <buffer> ,p ![](<++>) <++><Esc>F[a
+autocmd Filetype markdown inoremap <buffer> ,a [](<++>) <++><Esc>F[a
+autocmd Filetype markdown inoremap <buffer> ,1 #<Space><Enter><++><Esc>kA
+autocmd Filetype markdown inoremap <buffer> ,2 ##<Space><Enter><++><Esc>kA
+autocmd Filetype markdown inoremap <buffer> ,3 ###<Space><Enter><++><Esc>kA
+autocmd Filetype markdown inoremap <buffer> ,4 ####<Space><Enter><++><Esc>kA
+autocmd Filetype markdown inoremap <buffer> ,l --------<Enter>
 
 
 " ===
