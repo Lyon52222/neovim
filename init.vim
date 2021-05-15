@@ -5,7 +5,7 @@
 "|_|  |_| |_|   |_| \_|  \_/  |___|_|  |_|_| \_\\____|
 "
 "Author @lyon  Reference @theniceboy
-
+  
 " ===
 " === 第一次使用时自动加载
 " ===
@@ -22,6 +22,7 @@ endif
 let g:python3_host_prog = '/usr/local/anaconda3/bin/python3'
 
 let mapleader = ","
+let g:maplocalleader = "\<space>" 
 noremap \ ,
 
 
@@ -30,21 +31,33 @@ nmap fw     :w<CR> 				"保存文件"
 nmap fq     :q<CR>				"退出文件"
 nmap fwq	:wq<CR>				"保存退出"
 nmap fqq	:q!<CR>				"放弃保存退出"
+"vim自带ZZ,ZQ
+
+"数字+-
+noremap + <C-a>
+noremap - <C-x>
+
+" 文件编辑
+nnoremap Y y$
+vnoremap Y "+y
+
 
 "退出插入模式
-inoremap JJ <Esc>
+"inoremap JJ <Esc>
+"自带CTRL-[
 
 "快速移动
-noremap <S-l> $
-noremap <S-h> 0
-noremap <S-j> 5j
-noremap <S-k> 5k
+"noremap <C-l> $
+"noremap <C-h> 0
+noremap <C-j> 5j
+noremap <C-k> 5k
+"键盘自带Fn ; '
 
 " 快速选择窗口
-map <C-j> <C-w>j
-map <C-k> <C-w>k
-map <C-h> <C-w>h
-map <C-l> <C-w>l
+map <S-j> <C-w>j
+map <S-k> <C-w>k
+map <S-h> <C-w>h
+map <S-l> <C-w>l
 
 " 快速划分窗口
 nnoremap <leader>sp :split<CR>
@@ -58,8 +71,11 @@ nmap <silent> <M-h> :vertical resize +5<CR>
 
 " tag相关
 noremap th :tabe<CR>
-noremap tj :-tabnext<CR>
-noremap tk :+tabnext<CR>
+"noremap tj :-tabnext<CR>
+"noremap tk :+tabnext<CR>
+noremap tj :+tabmove<CR>
+noremap tk :-tabmove<CR>
+"自带 gt gT 1gt
 
 " Opening a terminal window
 noremap <LEADER>/ :set splitbelow<CR>:split<CR>:res +10<CR>:term<CR>
@@ -99,6 +115,9 @@ set showcmd						"现实指令"
 set showmode					"现实当前命令模式"
 set scrolloff=5                 "距离顶部和底部5行"
 set laststatus=2                "命令行为两行"
+"离开 Insert 模式时自动切换至英文输入法
+set noimdisable
+set autochdir "自动切换到文件当前目录
 " 其他杂项 -------------------------------------
 set mouse=a                     "启用鼠标"
 set selection=exclusive
@@ -112,6 +131,13 @@ set noexpandtab                 "不允许扩展table"
 set whichwrap+=<,>,h,l
 set autoread					"打开文件监视"
 autocmd bufwritepost $MYVIMRC source $MYVIMRC "保存后自动应用配置"
+" 再次打开文件，定位到上次退出时的位置
+if has("autocmd")
+    autocmd BufReadPost *
+                \ if line("'\"") > 0 && line("'\"") <= line("$") |
+                \   exe "normal g`\"" |
+                \ endif
+endif
 
 
 " 插件 -----------------------------------------
@@ -120,10 +146,12 @@ call plug#begin('~/.vim/plugged')
 	"colorscheme
 	Plug 'rakr/vim-one'
 	Plug 'junegunn/seoul256.vim'
-	"功能扩展
+	"文件导航
 	Plug '/usr/local/opt/fzf'
 	Plug 'junegunn/fzf.vim'
 	Plug 'liuchengxu/vista.vim'
+	Plug 'brooth/far.vim'
+	"功能扩展
 	Plug 'terryma/vim-smooth-scroll'
 	Plug 'mg979/vim-xtabline'
 	Plug 'mhinz/vim-startify'
@@ -134,12 +162,15 @@ call plug#begin('~/.vim/plugged')
 	Plug 'junegunn/vim-easy-align'
 	Plug 'easymotion/vim-easymotion'
 	Plug 'preservim/nerdcommenter'
-	Plug 'jiangmiao/auto-pairs',{'for':['python','php','c','cpp']}
+	Plug 'jiangmiao/auto-pairs'
 	Plug 'SirVer/ultisnips'
 	Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 	Plug 'tpope/vim-surround'
 	Plug 'gcmt/wildfire.vim'
 	Plug 'tpope/vim-repeat'
+	Plug 'kshenoy/vim-signature'
+	" 调试
+	Plug 'puremourning/vimspector'
 
 	" 安静编辑
 	Plug 'junegunn/goyo.vim'
@@ -160,12 +191,33 @@ call plug#begin('~/.vim/plugged')
 	Plug 'Yggdroot/indentLine',{'for':'python'}
 	Plug 'jupyter-vim/jupyter-vim'
 	Plug 'honza/vim-snippets',{'for':['python','cpp']}
-	Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
+	"Plug 'numirias/semshi',{'for':'python'}
 	"leetcode
 	Plug 'ianding1/leetcode.vim'
 call plug#end()
 " 插件END ----------------------------------------
+" ===
+" === far.vim
+" ===
+" shortcut for far.vim find
+nnoremap <silent> <leader>F :Farf<cr>
+vnoremap <silent> <leader>F :Farf<cr>
 
+" shortcut for far.vim replace
+nnoremap <silent> <leader>R :Farr<cr>
+vnoremap <silent> <leader>R :Farr<cr>
+
+" ===
+" === autopairs
+" ===
+let g:AutoPairsShortcutToggle = '<M-p>'
+
+
+" ===
+" === semshi python代码高亮
+" ===
+"nmap <silent> <Tab> :Semshi goto name next<CR>
+"nmap <silent> <S-Tab> :Semshi goto name prev<CR>
 
 " ===
 " === EasyAlign
@@ -264,9 +316,9 @@ nnoremap <leader>jb :PythonSetBreak<CR>
 " ===
 " Preview window on the upper side of the window with 40% height,
 " hidden by default, ctrl-/ to toggle
-nnoremap <M-p> :Files<CR>
+nnoremap <M-o> :Files<CR>
 nnoremap <M-f> :Rg<CR>
-nnoremap <M-h> :History<CR>
+nnoremap <M-i> :History<CR>
 nnoremap <M-b> :Buffers<CR>
 
 
@@ -312,15 +364,15 @@ let g:airline#extensions#tabline#buffer_idx_format = {
        \ '9': '9 '
        \}
 " 设置切换tab的快捷键 <\> + <i> 切换到第i个 tab
-nmap <leader>1 <Plug>AirlineSelectTab1
-nmap <leader>2 <Plug>AirlineSelectTab2
-nmap <leader>3 <Plug>AirlineSelectTab3
-nmap <leader>4 <Plug>AirlineSelectTab4
-nmap <leader>5 <Plug>AirlineSelectTab5
-nmap <leader>6 <Plug>AirlineSelectTab6
-nmap <leader>7 <Plug>AirlineSelectTab7
-nmap <leader>8 <Plug>AirlineSelectTab8
-nmap <leader>9 <Plug>AirlineSelectTab9
+"nmap <leader>1 <Plug>AirlineSelectTab1
+"nmap <leader>2 <Plug>AirlineSelectTab2
+"nmap <leader>3 <Plug>AirlineSelectTab3
+"nmap <leader>4 <Plug>AirlineSelectTab4
+"nmap <leader>5 <Plug>AirlineSelectTab5
+"nmap <leader>6 <Plug>AirlineSelectTab6
+"nmap <leader>7 <Plug>AirlineSelectTab7
+"nmap <leader>8 <Plug>AirlineSelectTab8
+"nmap <leader>9 <Plug>AirlineSelectTab9
 " 设置切换tab的快捷键 <\> + <-> 切换到前一个 tab
 "nmap <leader>- <Plug>AirlineSelectPrevTab
 " 设置切换tab的快捷键 <\> + <+> 切换到后一个 tab
@@ -547,6 +599,29 @@ autocmd Filetype markdown inoremap <buffer> ,3 ###<Space><Enter><++><Esc>kA
 autocmd Filetype markdown inoremap <buffer> ,4 ####<Space><Enter><++><Esc>kA
 autocmd Filetype markdown inoremap <buffer> ,l --------<Enter>
 
+" ===
+" === 终端配置
+" ===
+let g:neoterm_autoscroll = 1
+autocmd TermOpen term://* startinsert
+tnoremap <C-N> <C-\><C-N>
+tnoremap <C-O> <C-\><C-N><C-O>
+let g:terminal_color_0  = '#000000'
+let g:terminal_color_1  = '#FF5555'
+let g:terminal_color_2  = '#50FA7B'
+let g:terminal_color_3  = '#F1FA8C'
+let g:terminal_color_4  = '#BD93F9'
+let g:terminal_color_5  = '#FF79C6'
+let g:terminal_color_6  = '#8BE9FD'
+let g:terminal_color_7  = '#BFBFBF'
+let g:terminal_color_8  = '#4D4D4D'
+let g:terminal_color_9  = '#FF6E67'
+let g:terminal_color_10 = '#5AF78E'
+let g:terminal_color_11 = '#F4F99D'
+let g:terminal_color_12 = '#CAA9FA'
+let g:terminal_color_13 = '#FF92D0'
+let g:terminal_color_14 = '#9AEDFE'
+
 
 " ===
 " ===自动执行代码
@@ -593,4 +668,5 @@ func! CompileRunGcc()
 		:sp
 		:term go run .
 	endif
+	:$
 endfunc
