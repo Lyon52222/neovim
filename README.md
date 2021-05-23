@@ -263,6 +263,7 @@
 | \<localleader>ll | vimtex-compile(编译文件) |
 | \<localleader>lv | vimtex-view(查看pdf文档) |
 | \<localleader>li | vimtex-imap-list(查看insert模式下已定义的映射) |
+| \<localleader>le | 显示编译信息 |
 
 
 ## 自定义代码补全
