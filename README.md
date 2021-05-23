@@ -14,6 +14,7 @@
 	* [tab相关](#tab相关)
 	* [终端](#终端)
 * [插件快捷键](#插件快捷键)
+	* [终端](#终端-1)
 	* [自动补全](#自动补全)
 	* [文件浏览](#文件浏览)
 	* [文字编辑](#文字编辑)
@@ -45,10 +46,10 @@
 ### 快速移动
 | 快捷键 | 行为 | 原按键 |
 |:-|:-|:-|
-| <C-l> | 跳转到行尾 | \$ |
-| <C-h> | 跳转到行首 | 0 |
-| <C-j> | 向下移动5行 | 5j |
-| <C-k> | 向上移动5行 | 5k |
+| \<C-l> | 跳转到行尾 | \$ |
+| \<C-h> | 跳转到行首 | 0 |
+| \<C-j> | 向下移动5行 | 5j |
+| \<C-k> | 向上移动5行 | 5k |
 
 ### 划分窗口
 | 快捷键 | 行为 | 原按键 |
@@ -84,8 +85,21 @@
 | 快捷键 | 行为 | 原命令 |
 |:-|:-|:-|
 | \<leader>/ | 打开一个新的终端 | :set split\<CR>:split\<CR>:res +10\<CR>:term\<CR> |
+已经替换使用插件vim-terminal-help
 
 ## 插件快捷键
+### 终端
+| 快捷键 | 行为 |
+|:-|:-|
+| ALT+= | 打开或关闭终端 |
+| ALT+SHIFT+h | 移动到左边的窗口 |
+| ALT+SHIFT+j | 移动到下面的窗口 |
+| ALT+SHIFT+k | 移动到上面的窗口 |
+| ALT+SHIFT+l | 移动到右面的窗口 |
+| ALT+SHIFT+n | 移动到上一个窗口 |
+| ALT+- | 粘贴寄存器0的内容到终端 |
+| ALT+q | 退出终端到正常模式 |
+
 ### 自动补全
 [Coc](https://github.com/neoclide/coc.nvim) 
 | 快捷键 | 行为 |
@@ -97,8 +111,16 @@
 | gi | 列出引用列表 |
 | gr | 列出参考列表 |
 | T | 打开文档 |
-| \<leader> | 重命名 |
-| \<leader> | 格式化选中的代码 |
+| \<leader>rn | 重命名 |
+| \<leader>f | 格式化选中的代码 |
+| \<leader>a | 对选中的区域进行codeAction |
+| \<leader>ac | 对当前buffer进行codeAction |
+| \<leader>qf | 对当前行进行AutoFix |
+| if | 在函数块中 |
+| af | 函数块 |
+| ic | 类区域中 |
+| ac | 类区域 |
+
 
 [UltiSnips](https://github.com/SirVer/ultisnips)
 | 快捷键 | 行为 |
@@ -191,7 +213,7 @@
 | m, | 放置下一个可用的标签 |
 | m. | 如果当前行无标签，放置下一个可用的标签。否则删除存在在标签 |
 | m- | 删除当前行的所有标签 |
-| m<space> | 删除当前buffer的所有标签 |
+| m\<space> | 删除当前buffer的所有标签 |
 | ]\` | 前往下一个标签处 |
 | [\` | 前往上一个标签处 |
 | ]' | 跳到下一个具有标签行的开始 |
@@ -202,13 +224,13 @@
 | '[ | 按照字母表顺序跳转到上一个标签行的开始 |
 | m/ | 查看当前buffer的所有marks |
 |m[0-9]       |Toggle the corresponding marker| 
-|m<S-[0-9]>   |Remove all markers of the same type|
+|m\<S-[0-9]>   |Remove all markers of the same type|
 |]-           |Jump to next line having a marker of the same type|
 |[-           |Jump to prev line having a marker of the same type|
 |]=           |Jump to next line having a marker of any type|
 |[=           |Jump to prev line having a marker of any type|
 |m?           |Open location list and display markers from current buffer|
-|m<BS>        |Remove all markers|
+|m\<BS>        |Remove all markers|
 
 [Goyo](https://github.com/junegunn/goyo.vim)
 | 快捷键 | 行为 |

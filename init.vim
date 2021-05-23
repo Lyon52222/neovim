@@ -78,7 +78,8 @@ noremap tk :-tabmove<CR>
 "自带 gt gT 1gt
 
 " Opening a terminal window
-noremap <LEADER>/ :set splitbelow<CR>:split<CR>:res +10<CR>:term<CR>
+"noremap <LEADER>/ :set splitbelow<CR>:split<CR>:res +10<CR>:term<CR>
+"改用vim-terminal-help中的alt+n
 
 " Spelling Check with <space>sc
 noremap <LEADER>sc :set spell!<CR>
@@ -104,7 +105,8 @@ set langmenu=zh_CN.UTF-8        "显示中文菜单
 set t_Co=256
 " 变成辅助 -------------------------------------
 "syntax on                           "开启语法高亮
-set nowrap                      "设置代码不折行"
+"set nowrap                      "设置代码不折行"
+set wrap
 set fileformat=unix             "设置以unix的格式保存文件"
 set cindent                     "设置C样式的缩进格式"
 set tabstop=4                   "一个 tab 显示出来是多少个空格，默认 8
@@ -189,13 +191,25 @@ call plug#begin('~/.vim/plugged')
 	"Python
 	Plug 'tell-k/vim-autopep8',{'for':'python'}
 	Plug 'Yggdroot/indentLine',{'for':'python'}
-	Plug 'jupyter-vim/jupyter-vim'
 	Plug 'honza/vim-snippets',{'for':['python','cpp']}
-	"Plug 'numirias/semshi',{'for':'python'}
+	Plug 'jpalardy/vim-slime',{'for':'python'}
+	Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins'}
 	"leetcode
 	Plug 'ianding1/leetcode.vim'
-call plug#end()
+
+	"终端
+	Plug 'skywind3000/vim-terminal-help'
+	call plug#end()
 " 插件END ----------------------------------------
+
+" ===
+" === vim-slime
+" ===
+"let g:slime_target = "tmux"
+"let g:slime_default_config = {"socket_name": "/private/tmp/tmux-501/default", "target_pane": ":1.2"}
+"let g:slime_python_ipython = 1
+let g:slime_target = "neovim"
+
 " ===
 " === far.vim
 " ===
@@ -218,6 +232,17 @@ let g:AutoPairsShortcutToggle = '<M-p>'
 " ===
 "nmap <silent> <Tab> :Semshi goto name next<CR>
 "nmap <silent> <S-Tab> :Semshi goto name prev<CR>
+"nmap <silent> <leader>c :Semshi goto class next<CR>
+"nmap <silent> <leader>C :Semshi goto class prev<CR>
+
+"nmap <silent> <leader>f :Semshi goto function next<CR>
+"nmap <silent> <leader>F :Semshi goto function prev<CR>
+
+"nmap <silent> <leader>gu :Semshi goto unresolved first<CR>
+"nmap <silent> <leader>gp :Semshi goto parameterUnused first<CR>
+
+"nmap <silent> <leader>ee :Semshi error<CR>
+"nmap <silent> <leader>ge :Semshi goto error<CR>
 
 " ===
 " === EasyAlign
@@ -293,22 +318,6 @@ noremap <M-v> :Vista!!<CR>
 autocmd FileType python noremap <buffer> <F8> :call Autopep8()<CR>
 
 
-
-" ===
-" ===jupyter-vim配置-----------------------------
-" ===
-let g:jupyter_mapkeys = 0
-" Run current file
-nnoremap <leader>jc :JupyterConnect<CR>
-nnoremap <leader>jr :JupyterRunFile<CR>
-nnoremap <leader>ji :PythonImportThisFile<CR>
-nnoremap <leader>jd :JupyterCd %:p:h<CR>
-nnoremap <leader>jx :JupyterSendCell<CR>
-nnoremap <leader>je :JupyterSendRange<CR>
-nmap     <leader>je <Plug>JupyterRunTextObj
-vmap     <leader>je <Plug>JupyterRunVisual
-nnoremap <leader>ju :JupyterUpdateShell<CR>
-nnoremap <leader>jb :PythonSetBreak<CR>
 
 
 " ===
@@ -464,7 +473,14 @@ let g:UltiSnipsEditSplit="vertical"
 " ===
 " ===coc.nvim配置---------------------------------
 " ===
-let g:coc_global_extensions = ['coc-explorer','coc-highlight','coc-vimtex','coc-json','coc-vimlsp','coc-pyright','coc-snippets']
+let g:coc_global_extensions = ['coc-explorer',
+								\'coc-highlight',
+								\'coc-vimtex',
+								\'coc-json',
+								\'coc-vimlsp',
+								\'coc-pyright',
+								\'coc-clangd',
+								\'coc-snippets']
 set updatetime=100
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
@@ -604,8 +620,9 @@ autocmd Filetype markdown inoremap <buffer> ,l --------<Enter>
 " ===
 let g:neoterm_autoscroll = 1
 autocmd TermOpen term://* startinsert
-tnoremap <C-N> <C-\><C-N>
-tnoremap <C-O> <C-\><C-N><C-O>
+"tnoremap <C-N> <C-\><C-N>
+"tnoremap <C-O> <C-\><C-N><C-O>
+"改用vim-terminal-help中的alt+q
 let g:terminal_color_0  = '#000000'
 let g:terminal_color_1  = '#FF5555'
 let g:terminal_color_2  = '#50FA7B'
@@ -670,3 +687,4 @@ func! CompileRunGcc()
 	endif
 	:$
 endfunc
+
