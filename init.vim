@@ -54,7 +54,7 @@ noremap <C-k> 5k
 "键盘自带Fn ; '
 nmap <silent> <Tab> *
 nmap <silent> <S-Tab> #
-nmap <BS> :noh<CR>
+nmap <localleader><localleader> :noh<CR>
 
 " 快速选择窗口
 map <S-j> <C-w>j

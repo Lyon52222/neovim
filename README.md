@@ -15,6 +15,7 @@
 	* [终端](#终端)
 	* [其它](#其它)
 * [插件快捷键](#插件快捷键)
+	* [python](#python)
 	* [终端](#终端-1)
 	* [自动补全](#自动补全)
 	* [文件浏览](#文件浏览)
@@ -42,7 +43,8 @@
 | 快捷键 | 行为 | 原按键 |
 |:-|:-|:-|
 | JJ | 退出插入模式 | \<Esc> |
-已换而使用原生的CTRL-[
+
+JJ已换而使用原生的CTRL-[
 
 ### 快速移动
 | 快捷键 | 行为 | 原按键 |
@@ -53,7 +55,8 @@
 | \<C-k> | 向上移动5行 | 5k |
 | \<Tab> | 向前搜索当前光标下的单词 |
 | \<S-Tab> | 向后搜索当前光标下的单词 |
-已换而使用系统自带Home End
+
+\<C-h> \<C-l>已换而使用系统自带Home End
 
 ### 划分窗口
 | 快捷键 | 行为 | 原按键 |
@@ -81,9 +84,10 @@
 | 快捷键 | 行为 | 原按键 |
 |:-|:-|:-|
 | th | 新建一个tab | :tabe |
-| tj | 下一个tab | :-tabnext |
-| tk | 上一个tab | :+tabnext |
-已换而使用原生的gt,gT
+| tj | 将当前tab前移 | :-tabmove |
+| tk | 将当前tab后移 | :+tabmove |
+
+切换tab已换而使用原生的gt,gT
 
 ### 终端
 | 快捷键 | 行为 | 原命令 |
@@ -94,11 +98,21 @@
 ### 其它
 | 快捷键 | 行为 |
 |:-|:-|
-| \<BS> | 取消搜索后的高亮 |
+| \<localleader>\<localleader> | 取消搜索后的高亮 |
 
 
 ## 插件快捷键
+### python
+[vim-slime](https://github.com/jpalardy/vim-slime) 
+| 快捷键 | 行为 |
+|:-|:-|
+| \<C-c>\<C-c> | 运行当前段或者选中区域内容 |
+| \<C-c>v | 查看当前配置文件 |
+
+
+
 ### 终端
+[vim-terminal-help](https://github.com/skywind3000/vim-terminal-help) 
 | 快捷键 | 行为 |
 |:-|:-|
 | ALT+= | 打开或关闭终端 |
@@ -107,7 +121,7 @@
 | ALT+SHIFT+k | 移动到上面的窗口 |
 | ALT+SHIFT+l | 移动到右面的窗口 |
 | ALT+SHIFT+n | 移动到上一个窗口 |
-| ALT+- | 粘贴寄存器0的内容到终端 |
+| ALT+\- | 粘贴寄存器0的内容到终端 |
 | ALT+q | 退出终端到正常模式 |
 
 ### 自动补全
@@ -126,6 +140,9 @@
 | \<leader>a | 对选中的区域进行codeAction |
 | \<leader>ac | 对当前buffer进行codeAction |
 | \<leader>qf | 对当前行进行AutoFix |
+
+| text object | region |
+|:-|:-|
 | if | 在函数块中 |
 | af | 函数块 |
 | ic | 类区域中 |
@@ -294,7 +311,6 @@ text object
 | i\$ a\$ | Inline math strucures |
 | iP aP | Sections |
 | im am | Items |
-
 
 
 ## 自定义代码补全
