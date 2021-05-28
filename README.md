@@ -13,13 +13,14 @@
 	* [调整窗口大小](#调整窗口大小)
 	* [tab相关](#tab相关)
 	* [终端](#终端)
+	* [其它](#其它)
 * [插件快捷键](#插件快捷键)
 	* [终端](#终端-1)
 	* [自动补全](#自动补全)
 	* [文件浏览](#文件浏览)
 	* [文字编辑](#文字编辑)
 	* [缓冲区内导航](#缓冲区内导航)
-	* [其它](#其它)
+	* [其它](#其它-1)
 * [文件相关](#文件相关)
 	* [MarkDown](#markdown)
 	* [Latex](#latex)
@@ -50,6 +51,9 @@
 | \<C-h> | 跳转到行首 | 0 |
 | \<C-j> | 向下移动5行 | 5j |
 | \<C-k> | 向上移动5行 | 5k |
+| \<Tab> | 向前搜索当前光标下的单词 |
+| \<S-Tab> | 向后搜索当前光标下的单词 |
+已换而使用系统自带Home End
 
 ### 划分窗口
 | 快捷键 | 行为 | 原按键 |
@@ -86,6 +90,12 @@
 |:-|:-|:-|
 | \<leader>/ | 打开一个新的终端 | :set split\<CR>:split\<CR>:res +10\<CR>:term\<CR> |
 已经替换使用插件vim-terminal-help
+
+### 其它
+| 快捷键 | 行为 |
+|:-|:-|
+| \<BS> | 取消搜索后的高亮 |
+
 
 ## 插件快捷键
 ### 终端
@@ -264,6 +274,27 @@
 | \<localleader>lv | vimtex-view(查看pdf文档) |
 | \<localleader>li | vimtex-imap-list(查看insert模式下已定义的映射) |
 | \<localleader>le | 显示编译信息 |
+| dse | 删除光标周围\begin \end 环境 |
+| dsc | 删除光标周围\command{} 环境 |
+| ds\$ | 删除光标周围\$ \$环境|
+| dsd | 删除光标周围括号 |
+| cse | 修改光标周围\begin \end 环境 |
+| csc | 修改光标周围\command{} 环境 |
+| cs\$ | 修改光标周围\$ \$环境|
+| csd | 修改光标周围括号 |
+| tsc | \command{} 和 \command*{}互换 |
+| tse | \begin{env} 和 \begin{env*}互换 |
+| tsd | (...) 和 \left(...\right)互换 |
+text object
+| text object | region |
+|:-|:-|
+| ic ac | Command |
+| id ad | Delimiters |
+| ie ae | Environments |
+| i\$ a\$ | Inline math strucures |
+| iP aP | Sections |
+| im am | Items |
+
 
 
 ## 自定义代码补全

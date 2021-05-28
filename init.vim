@@ -27,10 +27,10 @@ noremap \ ,
 
 
 " 快捷键配 -----------------------------------
-nmap fw     :w<CR> 				"保存文件"
-nmap fq     :q<CR>				"退出文件"
-nmap fwq	:wq<CR>				"保存退出"
-nmap fqq	:q!<CR>				"放弃保存退出"
+nmap fw     :w<CR>
+nmap fq     :q<CR>
+nmap fwq	:wq<CR>
+nmap fqq	:q!<CR>
 "vim自带ZZ,ZQ
 
 "数字+-
@@ -52,6 +52,9 @@ vnoremap Y "+y
 noremap <C-j> 5j
 noremap <C-k> 5k
 "键盘自带Fn ; '
+nmap <silent> <Tab> *
+nmap <silent> <S-Tab> #
+nmap <BS> :noh<CR>
 
 " 快速选择窗口
 map <S-j> <C-w>j
@@ -118,7 +121,8 @@ set showmode					"现实当前命令模式"
 set scrolloff=5                 "距离顶部和底部5行"
 set laststatus=2                "命令行为两行"
 "离开 Insert 模式时自动切换至英文输入法
-set noimdisable
+"该选项只在Gvim中有用
+"set noimdisable
 set autochdir "自动切换到文件当前目录
 " 其他杂项 -------------------------------------
 set mouse=a                     "启用鼠标"
@@ -171,6 +175,8 @@ call plug#begin('~/.vim/plugged')
 	Plug 'gcmt/wildfire.vim'
 	Plug 'tpope/vim-repeat'
 	Plug 'kshenoy/vim-signature'
+	" 快速添加函数，类注释
+	Plug 'babaybus/DoxygenToolkit.vim'
 	" 调试
 	Plug 'puremourning/vimspector'
 
@@ -316,7 +322,6 @@ noremap <M-v> :Vista!!<CR>
 " ===autopep8配置-----------------------------------
 " ===
 autocmd FileType python noremap <buffer> <F8> :call Autopep8()<CR>
-
 
 
 
