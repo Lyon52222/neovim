@@ -6,46 +6,36 @@
 
 * [快捷键](#快捷键)
 	* [文件操作](#文件操作)
-	* [退出插入模式](#退出插入模式)
 	* [文本编辑](#文本编辑)
 	* [快速移动](#快速移动)
 	* [划分窗口](#划分窗口)
 	* [窗口跳转](#窗口跳转)
 	* [调整窗口大小](#调整窗口大小)
 	* [tab相关](#tab相关)
-	* [终端](#终端)
 	* [其它](#其它)
 * [插件快捷键](#插件快捷键)
-	* [python](#python)
-	* [终端](#终端-1)
-	* [自动补全](#自动补全)
 	* [文件浏览](#文件浏览)
-	* [文字编辑](#文字编辑)
-	* [缓冲区内导航](#缓冲区内导航)
-	* [其它](#其它-1)
+	* [功能扩展](#功能扩展)
+	* [辅助编辑](#辅助编辑)
+	* [python](#python)
+	* [移动增强](#移动增强)
+	* [自动补全](#自动补全)
 * [文件相关](#文件相关)
 	* [MarkDown](#markdown)
 	* [Latex](#latex)
-* [自定义代码补全](#自定义代码补全)
 	* [MarkDown](#markdown-1)
 
 <!-- vim-markdown-toc -->
 
 ## 快捷键
 ### 文件操作
-| 快捷键 | 行为 | 原按键 |
-|:-|:-|:-|
-| fw| 保存文件 | w\<CR> |
-| fq| 退出文件 | q\<CR> |
-| fwq| 保存并退出文件 | wq\<CR> |
-| fqq| 放弃保存直接退出文件 | q!\<CR>|
+| 快捷键 | 行为 |
+|:-|:-|
+| fw| 保存文件 |
+| fq| 退出文件 |
+| fwq| 保存并退出文件 |
+| fqq| 放弃保存直接退出文件 |
 
-### 退出插入模式
-| 快捷键 | 行为 | 原按键 |
-|:-|:-|:-|
-| JJ | 退出插入模式 | \<Esc> |
-
-JJ已换而使用原生的CTRL-[
 
 ### 文本编辑
 | 快捷键 | 行为 |
@@ -53,120 +43,60 @@ JJ已换而使用原生的CTRL-[
 | + | 数字加1 |
 | - | 数字减1 |
 | Y | 复制到系统剪切板 |
-| F | 将多行拼接为一行，中间加空格 |
-| gF | 将多行拼接为一行，中间不不加空格 |
+| \<leader>J | 将多行拼接为一行，中间加空格 |
+| \<leader>C | 将多行拼接为一行，中间不不加空格 |
 
 
 ### 快速移动
-| 快捷键 | 行为 | 原按键 |
-|:-|:-|:-|
-| \<C-l> | 跳转到行尾 | \$ |
-| \<C-h> | 跳转到行首 | 0 |
-| \<C-j> | 向下移动5行 | 5j |
-| \<C-k> | 向上移动5行 | 5k |
-| \<Tab> | 向前搜索当前光标下的单词 |
-| \<S-Tab> | 向后搜索当前光标下的单词 |
+| 快捷键 | 行为 |
+|:-|:-|
+| \<C-j> | 向下移动5行 |
+| \<C-k> | 向上移动5行 |
+| \<C-h> | 向前搜索当前光标下的单词 |
+| \<C-l> | 向后搜索当前光标下的单词 |
+| \<localleader>\<localleader> | 取消搜索后的高亮 |
 
-\<C-h> \<C-l>已换而使用系统自带Home End
 
 ### 划分窗口
-| 快捷键 | 行为 | 原按键 |
-|:-|:-|:-|
-| \<leader>sp | 纵向划分窗口 | :split |
-| \<leader>vs | 横向划分窗口 | :vsplit |
+| 快捷键 | 行为 |
+|:-|:-|
+| \<leader>sj | 在当前窗口下方新建一个窗口 |
+| \<leader>sk | 在当前窗口上方新建一个窗口 |
+| \<leader>sh | 在当前窗口左方新建一个窗口 |
+| \<leader>sl | 在当前窗口右方新建一个窗口 |
+
 
 ### 窗口跳转
-| 快捷键 | 行为 | 原按键 |
-|:-|:-|:-|
-| H | 跳转到左边的窗口 | <C-w>h |
-| J | 跳转到下面的窗口 | <C-w>j |
-| K | 跳转到上面的窗口 | <C-w>k |
-| L | 跳转到右边的窗口 | <C-w>l |
+| 快捷键 | 行为 |
+|:-|:-|
+| \<left> | 跳转到左边的窗口 |
+| \<down> | 跳转到下面的窗口 |
+| \<up> | 跳转到上面的窗口 |
+| \<right> | 跳转到右边的窗口 |
 
 ### 调整窗口大小
-| 快捷键 | 行为 | 原按键 |
-|:-|:-|:-|
-| \<M-l> | 横向减少5个单位 | :vertical resize -5 |
-| \<M-k> | 纵向减少5个单位 | :resize -5 |
-| \<M-j> | 纵向增加5个单位 | :resize +5 |
-| \<M-h> | 横向增加5个单位 | :vertical resize +5 |
+| 快捷键 | 行为 |
+|:-|:-|
+| \<M-l> | 横向减少5个单位 |
+| \<M-k> | 纵向减少5个单位 |
+| \<M-j> | 纵向增加5个单位 |
+| \<M-h> | 横向增加5个单位 |
 
 ### tab相关
-| 快捷键 | 行为 | 原按键 |
-|:-|:-|:-|
-| th | 新建一个tab | :tabe |
-| tj | 将当前tab前移 | :-tabmove |
-| tk | 将当前tab后移 | :+tabmove |
-
-切换tab已换而使用原生的gt,gT
-
-### 终端
-| 快捷键 | 行为 | 原命令 |
-|:-|:-|:-|
-| \<leader>/ | 打开一个新的终端 | :set split\<CR>:split\<CR>:res +10\<CR>:term\<CR> |
-已经替换使用插件vim-terminal-help
+| 快捷键 | 行为 |
+|:-|:-|
+| tn | 新建一个tab |
+| tj | 将当前tab前移 |
+| tk | 将当前tab后移 |
+| tc | 关闭当前tab |
 
 ### 其它
 | 快捷键 | 行为 |
 |:-|:-|
-| \<localleader>\<localleader> | 取消搜索后的高亮 |
-
+| \<leader>sc | 打开/关闭拼写检查 |
+| \<leader>\<leader> | 找到下一个\<++>并进入编辑 |
 
 ## 插件快捷键
-### python
-[vim-slime](https://github.com/jpalardy/vim-slime) 
-| 快捷键 | 行为 |
-|:-|:-|
-| \<C-c>\<C-c> | 运行当前段或者选中区域内容 |
-| \<C-c>v | 查看当前配置文件 |
-
-
-
-### 终端
-[vim-terminal-help](https://github.com/skywind3000/vim-terminal-help) 
-| 快捷键 | 行为 |
-|:-|:-|
-| ALT+= | 打开或关闭终端 |
-| ALT+SHIFT+h | 移动到左边的窗口 |
-| ALT+SHIFT+j | 移动到下面的窗口 |
-| ALT+SHIFT+k | 移动到上面的窗口 |
-| ALT+SHIFT+l | 移动到右面的窗口 |
-| ALT+SHIFT+n | 移动到上一个窗口 |
-| ALT+\- | 粘贴寄存器0的内容到终端 |
-| ALT+q | 退出终端到正常模式 |
-
-### 自动补全
-[Coc](https://github.com/neoclide/coc.nvim) 
-| 快捷键 | 行为 |
-|:-|:-|
-| [g | 前往上一个警告处 |
-| ]g | 前往下一个警告处 |
-| gd | 列出定义列表 |
-| gy | 转至类型定义 |
-| gi | 列出引用列表 |
-| gr | 列出参考列表 |
-| T | 打开文档 |
-| \<leader>rn | 重命名 |
-| \<leader>f | 格式化选中的代码 |
-| \<leader>a | 对选中的区域进行codeAction |
-| \<leader>ac | 对当前buffer进行codeAction |
-| \<leader>qf | 对当前行进行AutoFix |
-
-| text object | region |
-|:-|:-|
-| if | 在函数块中 |
-| af | 函数块 |
-| ic | 类区域中 |
-| ac | 类区域 |
-
-
-[UltiSnips](https://github.com/SirVer/ultisnips)
-| 快捷键 | 行为 |
-|:-|:-|
-| \<tab> | 召唤一个代码片段 |
-| \<tab> | 召唤下一个代码片段 |
-| \<S-tab> | 召唤上一个代码片段 |
-
 ### 文件浏览
 [vim-startify](https://github.com/mhinz/vim-startify)
 | 快捷键 | 行为 |
@@ -183,8 +113,8 @@ JJ已换而使用原生的CTRL-[
 [FZF 文件模糊查找](https://github.com/junegunn/fzf.vim)
 | 快捷键 | 行为 |
 |:-|:-|
-| \<M-o> | 模糊查找文件 |
-| \<M-f> | 模糊查找文件内容 |
+| \<M-f> | 模糊查找文件 |
+| \<M-t> | 模糊查找文件内容 |
 | \<M-i> | 模糊查找历史文件 |
 | \<M-b> | 模糊查找Buffers  |
 
@@ -194,55 +124,31 @@ JJ已换而使用原生的CTRL-[
 | \<leader>F | 搜索 |
 | \<leader>R | 替换 |
 
-### 文字编辑
-[nerdcommenter](https://github.com/preservim/nerdcommenter)
+[vista.vim](https://github.com/liuchengxu/vista.vim) 
 | 快捷键 | 行为 |
 |:-|:-|
-| \<leader>cc | 注释当前行，或者视图模式的选择内容 |
-| \<leader>cn | 和cc相同，不过强制嵌套 |
-| \<leader>c\<space> | 切换当前行的注释方式 |
-| \<leader>cm | 使用简易的多行注释 |
-| \<leader>ci | 单独改变选择行的注释方式 |
-| \<leader>cs | 以感性的方式注释 |
-| \<leader>cy | 和cc相同，不过会复制 |
-| \<leader>c\$ | 注释从当前位置到行尾 |
-| \<leader>cA | 在尾部添加注释，并进入插入模式 |
-| \<leader>cu | 取消选择行的注释方式 |
+| \<localleader>v  | 打开/关闭vista |
 
-
-[vim-multiple-cursor](https://github.com/terryma/vim-multiple-cursors)
+[any-jump.vim](https://github.com/pechorin/any-jump.vim) 
 | 快捷键 | 行为 |
 |:-|:-|
-| Ctrl+n | 选择键 |
-| n/N | 选择下/上一个键 |
-| [/] | 选择下/上一个光标 |
-| q | 跳过当前选择下个键 |
-| Q | 取消选择当前光标 |
-| i,I,a,A | 进入插入模式 |
-| Esc | 退出多重光标 |
+| \<localleader>g | 打开any-jump |
+| \<localleader>ab | 回到上一次打开的文件 |
+| \<localleader>al | 打开最后关闭的搜索结果窗口 |
 
-[vim-surround](https://github.com/tpope/vim-surround)
+### 功能扩展
+[vim-terminal-help](https://github.com/skywind3000/vim-terminal-help) 
 | 快捷键 | 行为 |
 |:-|:-|
-| cs"' | 将两端的"修改为' |
-| ds" | 删除两端的" |
-| yss) | 在当前行的两端加() |
-| yss( | 在当前行的两端加(  ) |
-| ysiw} | iw表示一个text object |
+| ALT+= | 打开或关闭终端 |
+| ALT+SHIFT+h | 移动到左边的窗口 |
+| ALT+SHIFT+j | 移动到下面的窗口 |
+| ALT+SHIFT+k | 移动到上面的窗口 |
+| ALT+SHIFT+l | 移动到右面的窗口 |
+| ALT+SHIFT+n | 移动到上一个窗口 |
+| ALT+\- | 粘贴寄存器0的内容到终端 |
+| ALT+q | 退出终端到正常模式 |
 
-### 缓冲区内导航
-[vim-easy-motion](https://github.com/easymotion/vim-easymotion)
-| 快捷键 | 行为 |
-|:-|:-|
-| \<leader>\<leader>w | 选择当前词进行单词级的跳转 |
-| \<leader>\<leader>fo | 搜索单词o并进行跳转 |
-
-[Vuista.vim](https://github.com/liuchengxu/vista.vim)
-| 快捷键 | 行为 |
-|:-|:-|
-| \<M-v> | 打开/关闭Vista |
-
-### 其它
 [vim-signature](https://github.com/kshenoy/vim-signature)
 | 快捷键 | 行为 |
 |:-|:-|
@@ -282,6 +188,112 @@ JJ已换而使用原生的CTRL-[
 | \<leader>ll | 列出问题列表 |
 | \<leader>lt | 测试提交 |
 | \<leader>ls | 提交代码 |
+
+### 辅助编辑
+[UltiSnips](https://github.com/SirVer/ultisnips)
+| 快捷键 | 行为 |
+|:-|:-|
+| \<tab> | 召唤一个代码片段 |
+| \<tab> | 召唤下一个代码片段 |
+| \<S-tab> | 召唤上一个代码片段 |
+
+[nerdcommenter](https://github.com/preservim/nerdcommenter)
+| 快捷键 | 行为 |
+|:-|:-|
+| \<leader>cc | 注释当前行，或者视图模式的选择内容 |
+| \<leader>cn | 和cc相同，不过强制嵌套 |
+| \<leader>c\<space> | 切换当前行的注释方式 |
+| \<leader>cm | 使用简易的多行注释 |
+| \<leader>ci | 单独改变选择行的注释方式 |
+| \<leader>cs | 以感性的方式注释 |
+| \<leader>cy | 和cc相同，不过会复制 |
+| \<leader>c\$ | 注释从当前位置到行尾 |
+| \<leader>cA | 在尾部添加注释，并进入插入模式 |
+| \<leader>cu | 取消选择行的注释方式 |
+
+
+[vim-multiple-cursor](https://github.com/terryma/vim-multiple-cursors)
+| 快捷键 | 行为 |
+|:-|:-|
+| Ctrl+n | 选择键 |
+| n/N | 选择下/上一个键 |
+| [/] | 选择下/上一个光标 |
+| q | 跳过当前选择下个键 |
+| Q | 取消选择当前光标 |
+| i,I,a,A | 进入插入模式 |
+| Esc | 退出多重光标 |
+
+[vim-surround](https://github.com/tpope/vim-surround)
+| 快捷键 | 行为 |
+|:-|:-|
+| cs"' | 将两端的"修改为' |
+| ds" | 删除两端的" |
+| yss) | 在当前行的两端加() |
+| yss( | 在当前行的两端加(  ) |
+| ysiw} | iw表示一个text object |
+
+[auto-pairs](https://github.com/jiangmiao/auto-pairs) 
+| 快捷键 | 行为 |
+|:-|:-|
+| \<ALT-p> | 打开/关闭auto-pairs |
+
+[splitjoin.vim](https://github.com/AndrewRadev/splitjoin.vim) 
+| 快捷键 | 行为 |
+|:-|:-|
+| gS | 将一行转换为多行 |
+| gJ | 将多行转换为一行 |
+
+
+### python
+[vim-slime](https://github.com/jpalardy/vim-slime) 
+| 快捷键 | 行为 |
+|:-|:-|
+| \<C-c>\<C-c> | 运行当前段或者选中区域内容 |
+| \<C-c>v | 查看当前配置文件 |
+
+### 移动增强
+[vim-easy-motion](https://github.com/easymotion/vim-easymotion)
+| 快捷键 | 行为 |
+|:-|:-|
+| \<leader>\<leader>w | 选择当前词进行单词级的跳转 |
+| \<leader>\<leader>fo | 搜索单词o并进行跳转 |
+
+[vim-move](https://github.com/matze/vim-move) 
+| 快捷键 | 行为 |
+|:-|:-|
+| K | 将当前行或者选中内容上移 |
+| J | 将当前行或者选中内容下移 |
+| H | 将当前单词或者选中内容左移 |
+| L | 将当前单词或者选中内容右移 |
+
+
+
+### 自动补全
+[Coc](https://github.com/neoclide/coc.nvim) 
+| 快捷键 | 行为 |
+|:-|:-|
+| [g | 前往上一个警告处 |
+| ]g | 前往下一个警告处 |
+| gd | 列出定义列表 |
+| gy | 转至类型定义 |
+| gi | 列出引用列表 |
+| gr | 列出参考列表 |
+| \<localleader>h | 打开文档 |
+| \<leader>rn | 重命名 |
+| \<leader>f | 格式化选中的代码 |
+| \<leader>a | 对选中的区域进行codeAction |
+| \<leader>ac | 对当前buffer进行codeAction |
+| \<leader>qf | 对当前行进行AutoFix |
+
+| text object | region |
+|:-|:-|
+| if | 在函数块中 |
+| af | 函数块 |
+| ic | 类区域中 |
+| ac | 类区域 |
+
+
+
 
 ## 文件相关
 ### MarkDown
@@ -324,7 +336,6 @@ text object
 | im am | Items |
 
 
-## 自定义代码补全
 ### MarkDown
 | ,n | \--- |
 |:-|:-|

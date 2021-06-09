@@ -40,8 +40,8 @@ noremap - <C-x>
 " 文件编辑
 nnoremap Y y$
 vnoremap Y "+y
-"noremap <leader>j J
-"noremap <leader>J gJ
+noremap <leader>J J
+noremap <leader>C gJ
 
 
 "退出插入模式
@@ -49,13 +49,11 @@ vnoremap Y "+y
 "自带CTRL-[
 
 "快速移动
-"noremap <C-l> $
-"noremap <C-h> 0
+noremap <C-l> *
+noremap <C-h> #
 noremap <C-j> 5j
 noremap <C-k> 5k
 "键盘自带Fn ; '
-"noremap <silent> <Tab> *
-"noremap <silent> <S-Tab> #
 noremap <localleader><localleader> :noh<CR>
 
 " 快速选择窗口
@@ -172,10 +170,13 @@ call plug#begin('~/.vim/plugged')
 	Plug 'mhinz/vim-startify'
 	Plug 'bling/vim-airline'
 	Plug 'vim-airline/vim-airline-themes'
+	Plug 'kshenoy/vim-signature'
+	Plug 'skywind3000/vim-terminal-help'
+	Plug 'junegunn/goyo.vim'
+	Plug 'junegunn/limelight.vim'
 
 	" 辅助编辑
 	Plug 'junegunn/vim-easy-align'
-	Plug 'easymotion/vim-easymotion'
 	Plug 'preservim/nerdcommenter'
 	Plug 'jiangmiao/auto-pairs'
 	Plug 'SirVer/ultisnips'
@@ -184,22 +185,17 @@ call plug#begin('~/.vim/plugged')
 	Plug 'tpope/vim-surround'
 	Plug 'gcmt/wildfire.vim'
 	Plug 'tpope/vim-repeat'
-	Plug 'kshenoy/vim-signature'
 	Plug 'junegunn/vim-after-object'
-	Plug 'theniceboy/argtextobj.vim'
-	Plug 'matze/vim-move'
+	"Plug 'theniceboy/argtextobj.vim'
 	Plug 'AndrewRadev/splitjoin.vim'
-	Plug 'luochen1990/rainbow'
-	" 快速添加函数，类注释
 	Plug 'babaybus/DoxygenToolkit.vim'
+
+	" 移动增强
+	Plug 'easymotion/vim-easymotion'
+	Plug 'matze/vim-move'
 	" 调试
 	Plug 'puremourning/vimspector'
 
-	" 安静编辑
-	Plug 'junegunn/goyo.vim'
-	Plug 'junegunn/limelight.vim'
-	"高亮
-	Plug 'RRethy/vim-hexokinase', { 'do': 'make hexokinase' }
 	"Markdown
 	Plug 'mzlogin/vim-markdown-toc',{'for':'markdown'}
 	Plug 'godlygeek/tabular'
@@ -219,21 +215,33 @@ call plug#begin('~/.vim/plugged')
 	"leetcode
 	Plug 'ianding1/leetcode.vim'
 
-	"终端
-	Plug 'skywind3000/vim-terminal-help'
-	
-	"重新使用sudo打开文件或文件夹
-	Plug 'lambdalisue/suda.vim'
-
-	"自动切换输入法（只对mac有效）
-	Plug 'ybian/smartim'
 
 	" 视觉增强
 	Plug 'ryanoasis/vim-devicons'
+	Plug 'luochen1990/rainbow'
+	Plug 'RRethy/vim-hexokinase', { 'do': 'make hexokinase' }
+
+	" 其它
+	Plug 'lambdalisue/suda.vim'
+	Plug 'ybian/smartim'
+
 	" lazygit
 	"Plug 'kdheepak/lazygit.nvim'
 	call plug#end()
 " 插件END ----------------------------------------
+" ===
+" === any-jump
+" ===
+"let g:any_jump_disable_default_keybindings = 1
+" Normal mode: Jump to definition under cursore
+nnoremap <localleader>g :AnyJump<CR>
+" Visual mode: jump to selected text in visual mode
+xnoremap <localleader>g :AnyJumpVisual<CR>
+" Normal mode: open previous opened file (after jump)
+nnoremap <localleader>ab :AnyJumpBack<CR>
+" Normal mode: open last closed search window again
+nnoremap <localleader>al :AnyJumpLastResults<CR>
+
 " ===
 " === vim-after-object
 " ===
@@ -503,7 +511,7 @@ let g:airline#extensions#tabline#buffer_idx_format = {
 " 设置切换tab的快捷键 <\> + <+> 切换到后一个 tab
 "nmap <leader>+ <Plug>AirlineSelectNextTab
 " 设置切换tab的快捷键 <\> + <q> 退出当前的 tab
-nmap <leader>q :bp<cr>:bd #<cr>
+"nmap <leader>q :bp<cr>:bd #<cr>
 " 修改了一些个人不喜欢的字符
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
@@ -634,7 +642,7 @@ nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 nnoremap <localleader>e :CocCommand explorer<CR>
 
-nnoremap <silent> <leader>h :call <SID>show_documentation()<CR>
+nnoremap <silent> <localleader>h :call <SID>show_documentation()<CR>
 
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
