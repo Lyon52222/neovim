@@ -27,10 +27,10 @@ noremap \ ,
 
 
 " 快捷键配 -----------------------------------
-nmap fw     :w<CR>
-nmap fq     :q<CR>
-nmap fwq	:wq<CR>
-nmap fqq	:q!<CR>
+noremap fw     :w<CR>
+noremap fq     :q<CR>
+noremap fwq	:wq<CR>
+noremap fqq	:q!<CR>
 "vim自带ZZ,ZQ
 
 "数字+-
@@ -40,6 +40,8 @@ noremap - <C-x>
 " 文件编辑
 nnoremap Y y$
 vnoremap Y "+y
+"noremap <leader>j J
+"noremap <leader>J gJ
 
 
 "退出插入模式
@@ -52,19 +54,21 @@ vnoremap Y "+y
 noremap <C-j> 5j
 noremap <C-k> 5k
 "键盘自带Fn ; '
-nmap <silent> <Tab> *
-nmap <silent> <S-Tab> #
-nmap <localleader><localleader> :noh<CR>
+"noremap <silent> <Tab> *
+"noremap <silent> <S-Tab> #
+noremap <localleader><localleader> :noh<CR>
 
 " 快速选择窗口
-map <S-j> <C-w>j
-map <S-k> <C-w>k
-map <S-h> <C-w>h
-map <S-l> <C-w>l
+noremap <down> <C-w>j
+noremap <up> <C-w>k
+noremap <left> <C-w>h
+noremap <right> <C-w>l
 
 " 快速划分窗口
-nnoremap <leader>sp :split<CR>
-nnoremap <leader>vs :vsplit<CR>
+noremap <leader>sj :set nosplitbelow<CR>:split<CR>:set splitbelow<CR>
+noremap <leader>sk :set splitbelow<CR>:split<CR>
+noremap <leader>sl :set nosplitright<CR>:vsplit<CR>:set splitright<CR>
+noremap <leader>sh :set splitright<CR>:vsplit<CR>
 
 " 快速调整窗口大小
 nmap <silent> <M-l> :vertical resize -5<CR>
@@ -72,12 +76,13 @@ nmap <silent> <M-k> :resize -5<CR>
 nmap <silent> <M-j> :resize +5<CR>
 nmap <silent> <M-h> :vertical resize +5<CR>
 
-" tag相关
-noremap th :tabe<CR>
+" tab相关
+noremap tn :tabe<CR>
 "noremap tj :-tabnext<CR>
 "noremap tk :+tabnext<CR>
 noremap tj :+tabmove<CR>
 noremap tk :-tabmove<CR>
+noremap tc :tabclose<CR>
 "自带 gt gT 1gt
 
 " Opening a terminal window
@@ -87,18 +92,20 @@ noremap tk :-tabmove<CR>
 " Spelling Check with <space>sc
 noremap <LEADER>sc :set spell!<CR>
 
+" Press space twice to jump to the next '<++>' and edit it
+noremap <LEADER><LEADER> <Esc>/<++><CR>:nohlsearch<CR>c4l
+
 " 设置外观 -------------------------------------
 "colorscheme one
 colo seoul256
 "set background=dark
 set number                      "显示行号 
-set relativenumber
 augroup relative_numbser
  autocmd!
  autocmd InsertEnter * :set norelativenumber
  autocmd InsertLeave * :set relativenumber
 augroup END
-set showtabline=0               "隐藏顶部标签栏"
+"set showtabline=0               "隐藏顶部标签栏"
 set guioptions-=r               "隐藏右侧滚动条" 
 set guioptions-=L               "隐藏左侧滚动条"
 set guioptions-=b               "隐藏底部滚动条"
@@ -125,7 +132,7 @@ set laststatus=2                "命令行为两行"
 "set noimdisable
 set autochdir "自动切换到文件当前目录
 " 其他杂项 -------------------------------------
-set mouse=a                     "启用鼠标"
+set mouse=                     "禁用鼠标"
 set selection=exclusive
 set selectmode=mouse,key
 set matchtime=5
@@ -137,6 +144,7 @@ set noexpandtab                 "不允许扩展table"
 set whichwrap+=<,>,h,l
 set autoread					"打开文件监视"
 autocmd bufwritepost $MYVIMRC source $MYVIMRC "保存后自动应用配置"
+
 " 再次打开文件，定位到上次退出时的位置
 if has("autocmd")
     autocmd BufReadPost *
@@ -157,6 +165,7 @@ call plug#begin('~/.vim/plugged')
 	Plug 'junegunn/fzf.vim'
 	Plug 'liuchengxu/vista.vim'
 	Plug 'brooth/far.vim'
+	Plug 'pechorin/any-jump.vim'
 	"功能扩展
 	Plug 'terryma/vim-smooth-scroll'
 	Plug 'mg979/vim-xtabline'
@@ -170,11 +179,17 @@ call plug#begin('~/.vim/plugged')
 	Plug 'preservim/nerdcommenter'
 	Plug 'jiangmiao/auto-pairs'
 	Plug 'SirVer/ultisnips'
+	Plug 'honza/vim-snippets',{'for':['python','cpp','go']}
 	Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 	Plug 'tpope/vim-surround'
 	Plug 'gcmt/wildfire.vim'
 	Plug 'tpope/vim-repeat'
 	Plug 'kshenoy/vim-signature'
+	Plug 'junegunn/vim-after-object'
+	Plug 'theniceboy/argtextobj.vim'
+	Plug 'matze/vim-move'
+	Plug 'AndrewRadev/splitjoin.vim'
+	Plug 'luochen1990/rainbow'
 	" 快速添加函数，类注释
 	Plug 'babaybus/DoxygenToolkit.vim'
 	" 调试
@@ -186,27 +201,120 @@ call plug#begin('~/.vim/plugged')
 	"高亮
 	Plug 'RRethy/vim-hexokinase', { 'do': 'make hexokinase' }
 	"Markdown
-	Plug 'mzlogin/vim-markdown-toc'
+	Plug 'mzlogin/vim-markdown-toc',{'for':'markdown'}
 	Plug 'godlygeek/tabular'
-	Plug 'plasticboy/vim-markdown'
-	Plug 'iamcco/markdown-preview.nvim'
+	Plug 'plasticboy/vim-markdown',{'for':'markdown'}
+	Plug 'iamcco/markdown-preview.nvim',{'for':'markdown'}
 	"coc.nvim
 	Plug 'neoclide/coc.nvim', {'branch': 'release'}
 	"Latex
 	Plug 'lervag/vimtex',{'for':'tex'}
+	" Go
+	Plug 'fatih/vim-go', { 'for':['go','vim-plug'],'do': ':GoUpdateBinaries' }
 	"Python
 	Plug 'tell-k/vim-autopep8',{'for':'python'}
 	Plug 'Yggdroot/indentLine',{'for':'python'}
-	Plug 'honza/vim-snippets',{'for':['python','cpp']}
 	Plug 'jpalardy/vim-slime',{'for':'python'}
-	Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins'}
+	Plug 'numirias/semshi', { 'for':'python','do': ':UpdateRemotePlugins'}
 	"leetcode
 	Plug 'ianding1/leetcode.vim'
 
 	"终端
 	Plug 'skywind3000/vim-terminal-help'
+	
+	"重新使用sudo打开文件或文件夹
+	Plug 'lambdalisue/suda.vim'
+
+	"自动切换输入法（只对mac有效）
+	Plug 'ybian/smartim'
+
+	" 视觉增强
+	Plug 'ryanoasis/vim-devicons'
+	" lazygit
+	"Plug 'kdheepak/lazygit.nvim'
 	call plug#end()
 " 插件END ----------------------------------------
+" ===
+" === vim-after-object
+" ===
+autocmd VimEnter * call after_object#enable('=', ':', '-', '#', ' ')
+
+" ===
+" === rainbow
+" ===
+let g:rainbow_active = 1
+
+" ===
+" === vim-move
+" ===
+let g:move_key_modifier = 'S'
+
+" ===
+" === lazygit
+" ===
+"noremap <c-g> :LazyGit<CR>
+"let g:lazygit_floating_window_winblend = 0 " transparency of floating window
+"let g:lazygit_floating_window_scaling_factor = 1.0 " scaling factor for floating window
+"let g:lazygit_floating_window_corner_chars = ['╭', '╮', '╰', '╯'] " customize lazygit popup window corner characters
+"let g:lazygit_use_neovim_remote = 1 " for neovim-remote support
+
+" ===
+" === vim-go
+" ===
+"let g:go_gopls_enabled = 1
+" disable all linters as that is taken care of by coc.nvim
+let g:go_diagnostics_enabled = 0
+let g:go_metalinter_enabled = []
+" don't jump to errors after metalinter is invoked
+let g:go_jump_to_error = 0
+" run go imports on file save
+let g:go_fmt_command = "goimports"
+" disable default go mapping
+"let g:go_def_mapping_enabled = 0
+" disable K to open ducument
+let g:go_doc_keywordprg_enabled = 0
+" automatically highlight variable your cursor is on
+let g:go_auto_type_info = 1
+let g:go_def_mapping_enabled = 0
+let g:go_auto_sameids = 0
+let g:go_highlight_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_function_calls = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_build_constraints = 1
+let g:go_highlight_generate_tags = 1
+let g:go_highlight_array_whitespace_error = 1
+let g:go_highlight_build_constraints = 1
+let g:go_highlight_chan_whitespace_error = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_format_strings = 1
+let g:go_highlight_function_calls = 1
+let g:go_highlight_function_parameters = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_generate_tags = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_space_tab_error = 1
+let g:go_highlight_string_spellcheck = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_trailing_whitespace_error = 1
+let g:go_highlight_types = 1
+let g:go_highlight_variable_assignments = 0
+let g:go_highlight_variable_declarations = 0
+
+" ===
+" === smartim
+" ===
+let g:smartim_default = 'com.apple.keylayout.ABC'
+function! Multiple_cursors_before()
+  let g:smartim_disable = 1
+endfunction
+function! Multiple_cursors_after()
+  unlet g:smartim_disable
+endfunction
 
 " ===
 " === vim-slime
@@ -249,6 +357,8 @@ let g:AutoPairsShortcutToggle = '<M-p>'
 
 "nmap <silent> <leader>ee :Semshi error<CR>
 "nmap <silent> <leader>ge :Semshi goto error<CR>
+"let g:semshi#error_sign = 'false'
+
 
 " ===
 " === EasyAlign
@@ -315,7 +425,8 @@ let g:vista_ctags_cmd = {
 " The elements of g:vista_fzf_preview will be passed as arguments to fzf#vim#with_preview()
 " For example:
 let g:vista_fzf_preview = ['right:50%']
-noremap <M-v> :Vista!!<CR>
+"noremap <M-v> :Vista!!<CR>
+noremap <localleader>v :Vista!!<CR>
 
 
 " ===
@@ -330,8 +441,8 @@ autocmd FileType python noremap <buffer> <F8> :call Autopep8()<CR>
 " ===
 " Preview window on the upper side of the window with 40% height,
 " hidden by default, ctrl-/ to toggle
-nnoremap <M-o> :Files<CR>
-nnoremap <M-f> :Rg<CR>
+nnoremap <M-f> :Files<CR>
+nnoremap <M-t> :Rg<CR>
 nnoremap <M-i> :History<CR>
 nnoremap <M-b> :Buffers<CR>
 
@@ -473,15 +584,18 @@ let g:UltiSnipsJumpForwardTrigger = '<tab>'
 let g:UltiSnipsJumpBackwardTrigger = '<S-tab>' 
 "设置打开配置文件时为垂直打开
 let g:UltiSnipsEditSplit="vertical"
+noremap <localleader>ul :UltiSnipsEdit<CR>
 
 
 " ===
 " ===coc.nvim配置---------------------------------
 " ===
 let g:coc_global_extensions = ['coc-explorer',
+								\'coc-diagnostic','coc-css','coc-html','coc-lists',
 								\'coc-highlight',
 								\'coc-vimtex',
 								\'coc-json',
+								\'coc-yank',
 								\'coc-vimlsp',
 								\'coc-pyright',
 								\'coc-clangd',
@@ -501,7 +615,11 @@ function! s:check_back_space() abort
 endfunction
 
 " Use <c-space> to trigger completion.
-inoremap <silent><expr> <c-o> coc#refresh()
+if has('nvim')
+  inoremap <silent><expr> <c-space> coc#refresh()
+else
+  inoremap <silent><expr> <c-@> coc#refresh()
+endif
 
 " Use `[g` and `]g` to navigate diagnostics
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
@@ -510,16 +628,13 @@ nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
 " GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gD :tab sp<CR><Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+nnoremap <localleader>e :CocCommand explorer<CR>
 
-
-nnoremap <space>e :CocCommand explorer<CR>
-
-" Use K to show documentation in preview window.
-
-nnoremap <silent> T :call <SID>show_documentation()<CR>
+nnoremap <silent> <leader>h :call <SID>show_documentation()<CR>
 
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
@@ -570,6 +685,11 @@ omap ic <Plug>(coc-classobj-i)
 xmap ac <Plug>(coc-classobj-a)
 omap ac <Plug>(coc-classobj-a)
 
+" Use CTRL-S for selections ranges.
+" Requires 'textDocument/selectionRange' support of language server.
+nmap <silent> <C-s> <Plug>(coc-range-select)
+xmap <silent> <C-s> <Plug>(coc-range-select)
+
 " Add `:Format` command to format current buffer.
 command! -nargs=0 Format :call CocAction('format')
 
@@ -579,6 +699,28 @@ command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 " Add `:OR` command for organize imports of the current buffer.
 command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
 
+" Mappings for CoCList
+" Show all diagnostics.
+"nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
+"" Manage extensions.
+"nnoremap <silent><nowait> <space>e  :<C-u>CocList extensions<cr>
+"" Show commands.
+"nnoremap <silent><nowait> <space>c  :<C-u>CocList commands<cr>
+"" Find symbol of current document.
+"nnoremap <silent><nowait> <space>o  :<C-u>CocList outline<cr>
+"" Search workspace symbols.
+"nnoremap <silent><nowait> <space>s  :<C-u>CocList -I symbols<cr>
+"" Do default action for next item.
+nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
+"" Do default action for previous item.
+nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
+"" Resume latest coc list.
+"nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
+
+" ===
+" === coc-yank
+" ===
+nnoremap <silent> <localleader>y  :<C-u>CocList --normal yank<cr>
 
 
 
@@ -593,6 +735,8 @@ let g:vimtex_view_method='skim'
 " 设置编译引擎
 let g:vimtex_compiler_latexmk_engines = {'_': '-xelatex'}
 " Never opened/closed the quickfix window automatically. The quickfix window shows the errors and/or warnings when compile, and we can open the quickfix windows use \le
+
+set conceallevel=1
 let g:vimtex_quickfix_mode=0
 " 最后两行开启自动隐藏功能,开启了这个功能，除了你光标所在的那一行之外，文本里夹杂的LaTeX代码就都会隐藏或者替换成其他符号
 let g:tex_conceal='abdmg'
@@ -694,3 +838,8 @@ func! CompileRunGcc()
 	:$
 endfunc
 
+
+" ===
+" === Necessary Commands to Execute
+" ===
+exec "nohlsearch"
