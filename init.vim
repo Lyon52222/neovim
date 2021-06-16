@@ -193,6 +193,7 @@ call plug#begin('~/.vim/plugged')
 	" 移动增强
 	Plug 'easymotion/vim-easymotion'
 	Plug 'matze/vim-move'
+	Plug 'rhysd/clever-f.vim'
 	" 调试
 	Plug 'puremourning/vimspector'
 
@@ -225,10 +226,66 @@ call plug#begin('~/.vim/plugged')
 	Plug 'lambdalisue/suda.vim'
 	Plug 'ybian/smartim'
 
-	" lazygit
-	"Plug 'kdheepak/lazygit.nvim'
+	" git
+	Plug 'airblade/vim-gitgutter'
+	Plug 'kdheepak/lazygit.nvim', { 'branch': 'nvim-v0.4.3' }
+
+	" MiniApp
+	Plug 'skywind3000/asynctasks.vim'
+	Plug 'skywind3000/asyncrun.vim'
+	Plug 'itchyny/calendar.vim'
 	call plug#end()
 " 插件END ----------------------------------------
+
+" ===
+" === calendar.vim
+" ===
+noremap \\ :Calendar -view=clock -position=here<CR>
+let g:calendar_google_calendar = 1
+let g:calendar_google_task = 1
+
+" ===
+" === AsyncRun
+" ===
+noremap <leader>gp :AsyncRun git push<CR>
+
+
+" ===
+" === AsyncTasks
+" ===
+let g:asyncrun_open = 6
+
+" ===
+" === vim-gitgutter
+" ===
+" let g:gitgutter_signs = 0
+let g:gitgutter_sign_allow_clobber = 0
+let g:gitgutter_map_keys = 0
+let g:gitgutter_override_sign_column_highlight = 0
+let g:gitgutter_preview_win_floating = 1
+let g:gitgutter_sign_added = '▎'
+let g:gitgutter_sign_modified = '░'
+let g:gitgutter_sign_removed = '▏'
+let g:gitgutter_sign_removed_first_line = '▔'
+let g:gitgutter_sign_modified_removed = '▒'
+" autocmd BufWritePost * GitGutter
+nnoremap <LEADER>gf :GitGutterFold<CR>
+"nnoremap H :GitGutterPreviewHunk<CR>
+nnoremap <LEADER>gN :GitGutterPrevHunk<CR>
+nnoremap <LEADER>gn :GitGutterNextHunk<CR>
+
+" ===
+" === vim-easymotion
+" ===
+let g:EasyMotion_do_mapping = 0
+let g:EasyMotion_do_shade = 0
+let g:EasyMotion_smartcase = 1
+
+" ===
+" === vimspector
+" ===
+let g:vimspector_enable_mappings = 'HUMAN'
+
 " ===
 " === any-jump
 " ===
@@ -260,10 +317,10 @@ let g:move_key_modifier = 'S'
 " ===
 " === lazygit
 " ===
-"noremap <c-g> :LazyGit<CR>
-"let g:lazygit_floating_window_winblend = 0 " transparency of floating window
-"let g:lazygit_floating_window_scaling_factor = 1.0 " scaling factor for floating window
-"let g:lazygit_floating_window_corner_chars = ['╭', '╮', '╰', '╯'] " customize lazygit popup window corner characters
+noremap <localleader>lg :LazyGit<CR>
+let g:lazygit_floating_window_winblend = 0 " transparency of floating window
+let g:lazygit_floating_window_scaling_factor = 1.0 " scaling factor for floating window
+let g:lazygit_floating_window_corner_chars = ['╭', '╮', '╰', '╯'] " customize lazygit popup window corner characters
 "let g:lazygit_use_neovim_remote = 1 " for neovim-remote support
 
 " ===
@@ -371,7 +428,38 @@ let g:AutoPairsShortcutToggle = '<M-p>'
 " ===
 " === EasyAlign
 " ===
-xnoremap ga <Plug>(EasyAlign)
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+
+"配置一些自定义符号
+let g:easy_align_delimiters ={
+\ '>':{'pattern':'>>\|=>\|>'},
+\ '/':{
+\     'pattern':'//\+\|/\*\|\*/',
+\     'delimiter_align':'l',
+\     'ignore_groups':['!Comment']},
+\ ']':{
+\     'pattern':'[[\]]',
+\     'left_margin':0,
+\     'right_margin':0,
+\     'stick_to_left':0
+\   },
+\ ')':{
+\     'pattern':'[()]',
+\     'left_margin':0,
+\     'right_margin':0,
+\     'stick_to_left':0
+\   },
+\ 'd':{
+\     'pattern':' \(\S\+\s*[;=]\)\@=',
+\     'left_margin':0,
+\     'right_margin':0
+\   }
+\ }
+
 
 " ===
 " === Goyo
@@ -606,6 +694,7 @@ let g:coc_global_extensions = ['coc-explorer',
 								\'coc-yank',
 								\'coc-vimlsp',
 								\'coc-pyright',
+								\'coc-actions',
 								\'coc-clangd',
 								\'coc-snippets']
 set updatetime=100
@@ -624,10 +713,11 @@ endfunction
 
 " Use <c-space> to trigger completion.
 if has('nvim')
-  inoremap <silent><expr> <c-space> coc#refresh()
+  inoremap <silent><expr> <c-c> coc#refresh()
 else
   inoremap <silent><expr> <c-@> coc#refresh()
 endif
+
 
 " Use `[g` and `]g` to navigate diagnostics
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
@@ -642,7 +732,7 @@ nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 nnoremap <localleader>e :CocCommand explorer<CR>
 
-nnoremap <silent> <localleader>h :call <SID>show_documentation()<CR>
+nnoremap <silent> <leader>h :call <SID>show_documentation()<CR>
 
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
@@ -674,8 +764,15 @@ augroup end
 
 " Applying codeAction to the selected region.
 " Example: `<leader>aap` for current paragraph
-xmap <leader>a  <Plug>(coc-codeaction-selected)
-nmap <leader>a  <Plug>(coc-codeaction-selected)
+"xmap <leader>a  <Plug>(coc-codeaction-selected)
+"nmap <leader>a  <Plug>(coc-codeaction-selected)
+" Remap for do codeAction of selected region
+function! s:cocActionsOpenFromSelected(type) abort
+  execute 'CocCommand actions.open ' . a:type
+endfunction
+xmap <silent> <leader>a :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
+nmap <silent> <leader>a :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>g@
+
 
 " Remap keys for applying codeAction to the current buffer.
 nmap <leader>ac  <Plug>(coc-codeaction)
@@ -772,6 +869,11 @@ autocmd Filetype markdown inoremap <buffer> ,2 ##<Space><Enter><++><Esc>kA
 autocmd Filetype markdown inoremap <buffer> ,3 ###<Space><Enter><++><Esc>kA
 autocmd Filetype markdown inoremap <buffer> ,4 ####<Space><Enter><++><Esc>kA
 autocmd Filetype markdown inoremap <buffer> ,l --------<Enter>
+
+" ===
+" === vim-repeat
+" ===
+silent! call repeat#set("\<Plug>MyWonderfulMap", v:count)
 
 " ===
 " === 终端配置
