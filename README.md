@@ -264,6 +264,14 @@
 | :-                 | :-                             |
 | v/s/d.. a\<object> | 选择/替换/删除object之后的内容 |
 
+[DoxygenToolKit.vim](https://www.vim.org/scripts/script.php?script_id=987)
+| 快捷键     | 行为                   |
+| :-         | :-                     |
+| :Dox       | 生成function/class注释 |
+| :DoxAuthor | 生成作者签名           |
+| :DoxLic    | 生成证书               |
+| :DoxBlock  | 生成一个注释块         |
+
 ### python
 
 [vim-slime](https://github.com/jpalardy/vim-slime) 

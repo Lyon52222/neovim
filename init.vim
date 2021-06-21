@@ -186,9 +186,11 @@ call plug#begin('~/.vim/plugged')
 	Plug 'gcmt/wildfire.vim'
 	Plug 'tpope/vim-repeat'
 	Plug 'junegunn/vim-after-object'
-	"Plug 'theniceboy/argtextobj.vim'
 	Plug 'AndrewRadev/splitjoin.vim'
 	Plug 'babaybus/DoxygenToolkit.vim'
+	" TextObject
+	Plug 'theniceboy/argtextobj.vim'
+	"Plug 'kana/vim-textobj-entire'	
 
 	" 移动增强
 	Plug 'easymotion/vim-easymotion'
@@ -236,6 +238,15 @@ call plug#begin('~/.vim/plugged')
 	Plug 'itchyny/calendar.vim'
 	call plug#end()
 " 插件END ----------------------------------------
+" ===
+" ===DoxygenToolkit.vim 
+let g:DoxygenToolkit_briefTag_funcName="yes"
+let g:doxygen_enhanced_color=1
+" 注释快首尾
+let g:DoxygenToolkit_blockHeader="*******************************************************" 
+let g:DoxygenToolkit_blockFooter="*******************************************************" 
+" 作者
+let g:DoxygenToolkit_authorName="lyon.tolean@gmail.com"
 
 " ===
 " === calendar.vim
