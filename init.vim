@@ -236,6 +236,9 @@ call plug#begin('~/.vim/plugged')
 	Plug 'skywind3000/asynctasks.vim'
 	Plug 'skywind3000/asyncrun.vim'
 	Plug 'itchyny/calendar.vim'
+
+	" My plug
+	"Plug 'Lyon52222/Inkscape.vim',{'for':'tex'}
 	call plug#end()
 " 插件END ----------------------------------------
 " ===
@@ -958,6 +961,12 @@ func! CompileRunGcc()
 	endif
 	:$
 endfunc
+
+" ===
+" === Open inkscape
+" ===
+"inoremap <localleader>ik <Esc>: silent exec '.!inkscape-figures create "'.getline('.').'" "'.b:vimtex.root.'/figures/"'<CR><CR>:w<CR>
+"nnoremap <localleader>ik : silent exec '!inkscape-figures edit "'.b:vimtex.root.'/figures/" > /dev/null 2>&1 &'<CR><CR>:redraw!<CR>
 
 
 " ===
