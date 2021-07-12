@@ -114,10 +114,10 @@
 [FZF 文件模糊查找](https://github.com/junegunn/fzf.vim)
 | 快捷键 | 行为             |
 | :-     | :-               |
-| \<M-f> | 模糊查找文件     |
-| \<M-t> | 模糊查找文件内容 |
-| \<M-i> | 模糊查找历史文件 |
-| \<M-b> | 模糊查找Buffers  |
+| \<localleader>f | 模糊查找文件     |
+| \<localleader>r | 模糊查找文件内容 |
+| \<localleader>h | 模糊查找历史文件 |
+| \<localleader>b | 模糊查找Buffers  |
 
 [far.vim](https://github.com/brooth/far.vim)
 | 快捷键     | 行为 |

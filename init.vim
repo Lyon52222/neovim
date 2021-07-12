@@ -552,10 +552,14 @@ autocmd FileType python noremap <buffer> <F8> :call Autopep8()<CR>
 " ===
 " Preview window on the upper side of the window with 40% height,
 " hidden by default, ctrl-/ to toggle
-nnoremap <M-f> :Files<CR>
-nnoremap <M-t> :Rg<CR>
-nnoremap <M-i> :History<CR>
-nnoremap <M-b> :Buffers<CR>
+"nnoremap <M-f> :Files<CR>
+"nnoremap <M-t> :Rg<CR>
+"nnoremap <M-i> :History<CR>
+"nnoremap <M-b> :Buffers<CR>
+nnoremap <localleader>f :Files<CR>
+nnoremap <localleader>r :Rg<CR>
+nnoremap <localleader>h :History<CR>
+nnoremap <localleader>b :Buffers<CR>
 
 
 
