@@ -58,9 +58,9 @@
 		"go"
 	],
 	"explorer.file.column.indent.indentLine": true,
-	"explorer.icon.enableNerdfont": true,
 	"explorer.file.showHiddenFiles": true,
-	"explorer.icon.enableVimDevicons": true,
+	"explorer.icon.enableNerdfont": true,
+	"explorer.icon.source": "vim-devicons",
 	"explorer.sources": [
 		{
 			"name": "buffer",
