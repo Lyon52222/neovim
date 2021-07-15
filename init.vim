@@ -19,7 +19,7 @@ endif
 " ===
 " === 指定python版本
 " ===
-let g:python3_host_prog = '/usr/local/anaconda3/bin/python3'
+"let g:python3_host_prog = '/usr/local/anaconda3/bin/python3'
 
 
 let mapleader = ","
