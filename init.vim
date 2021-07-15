@@ -5,6 +5,7 @@
 "|_|  |_| |_|   |_| \_|  \_/  |___|_|  |_|_| \_\\____|
 "
 "Author @lyon  Reference @theniceboy
+"Arch Version
   
 " ===
 " === 第一次使用时自动加载
