@@ -232,7 +232,8 @@ call plug#begin('~/.vim/plugged')
 
 	" git
 	Plug 'airblade/vim-gitgutter'
-	Plug 'kdheepak/lazygit.nvim', { 'branch': 'nvim-v0.4.3' }
+	Plug 'kdheepak/lazygit.nvim'
+	"", { 'branch': 'nvim-v0.4.3' }
 
 	" MiniApp
 	Plug 'skywind3000/asynctasks.vim'
