@@ -164,7 +164,7 @@ call plug#begin('~/.vim/plugged')
 	Plug '/usr/local/opt/fzf'
 	Plug 'junegunn/fzf.vim'
 	Plug 'liuchengxu/vista.vim'
-	Plug 'brooth/far.vim'
+	"Plug 'brooth/far.vim'
 	Plug 'pechorin/any-jump.vim'
 	"功能扩展
 	Plug 'terryma/vim-smooth-scroll'
