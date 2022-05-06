@@ -132,7 +132,7 @@ set laststatus=2                "命令行为两行"
 "set noimdisable
 set autochdir "自动切换到文件当前目录
 " 其他杂项 -------------------------------------
-set mouse=                     "禁用鼠标"
+"set mouse=                     "禁用鼠标"
 set selection=exclusive
 set selectmode=mouse,key
 set matchtime=5

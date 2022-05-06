@@ -1,6 +1,7 @@
 # Lyon 的 Neovim 配置文件
 ----
 
+# 我已将Neovim的配置切换到[LunarVim](https://github.com/LunarVim/LunarVim),此配置不在更新。新的配置文件请查看[LunarVimConfig](https://github.com/Lyon52222/LunarVimConfig)
 
 <!-- vim-markdown-toc GFM -->
 
